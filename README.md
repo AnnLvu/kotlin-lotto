@@ -34,8 +34,9 @@ InputView
 
 OutputView
 - [x] Display Tickets
-- [ ] Display winning Statistics
-- [ ] Display Return Rate
+- [x] Display winning Statistics
+- [x] Display Return Rate
 
 Logic
 - [x] Calculate Winning Stats
+- [x] Calculate Return Rate
