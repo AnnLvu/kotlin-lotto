@@ -21,4 +21,8 @@ Winning Numbers
 - [x] bonus number not in the list of winning numbers
 
 Winning Ranks
-- [ ]
+- [ ] 6 numbers match
+- [ ] 5 numbers match + bonus
+- [ ] 5 numbers match
+- [ ] 4 numbers match
+- [ ] 3 number match
