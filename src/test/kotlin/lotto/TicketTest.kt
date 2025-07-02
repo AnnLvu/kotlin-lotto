@@ -20,10 +20,16 @@ class TicketTest {
     }
 
     @Test
-    fun `ticket numbers are between 1 to 45, 3`(){ // fixme: numbers should unique
+    fun `ticket numbers are not duplicate`(){
         assertThrows<IllegalArgumentException> {
             val ticket = Ticket(listOf(1,1,2,3,4,5))
         }
     }
 
+    @Test
+    fun `ticket numbers should not be empty`(){
+        assertThrows<IllegalArgumentException> {
+            Ticket(emptyList())
+        }
+    }
 }
