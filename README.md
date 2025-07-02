@@ -26,3 +26,8 @@ Winning Ranks
 - [x] 5 numbers match
 - [x] 4 numbers match
 - [x] 3 number match
+
+InputView
+- [x] Input amount from user
+- [x] Input winning numbers
+- [x] Input bonus number

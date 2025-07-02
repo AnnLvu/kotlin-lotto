@@ -4,6 +4,8 @@ object LottoMachine {
     fun start() {
         val amount = InputView.inputPurchaseAmount()
         generateTickets(amount)
+        val winningNumbers = InputView.inputWinningNumbers()
+        val bonusNumber = InputView.inputBonusNumber(winningNumbers)
     }
 
     fun generateTickets(amount: Int) {
