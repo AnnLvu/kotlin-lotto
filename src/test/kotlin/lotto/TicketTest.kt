@@ -40,9 +40,17 @@ class TicketTest {
     }
 
     @Test
-    fun `ticket numbers are not duplicate`(){
+    fun `ticket numbers are duplicate`(){
         assertThrows<IllegalArgumentException> {
             val ticket = Ticket(listOf(1,1,2,3,4,5))
+            require(ticket.numbers.size == ticket.numbers.distinct().size)
+        }
+    }
+
+    @Test
+    fun `ticket numbers are not duplicate`(){
+        assertDoesNotThrow {
+            val ticket = Ticket(listOf(1,10,2,3,4,5))
             require(ticket.numbers.size == ticket.numbers.distinct().size)
         }
     }
