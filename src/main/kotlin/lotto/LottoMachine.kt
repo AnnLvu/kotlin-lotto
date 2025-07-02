@@ -9,11 +9,16 @@ object LottoMachine {
     }
 
     fun generateTickets(amount: Int) {
-        val ticketNumbers = amount/LottoConstants.TICKET_PRICE
-        val ticket = Ticket(generateTicketNumbers())
+        val ticketCount = amount/LottoConstants.TICKET_PRICE
+        val ticketsList = mutableListOf<Ticket>()
+        repeat(ticketCount) {
+            val ticket = Ticket(generateTicketNumbers())
+            ticketsList.add(ticket)
+        }
+        OutputView.displayTickets(ticketCount, ticketsList)
     }
 
     private fun generateTicketNumbers(): List<Int> {
-        return(1..45).shuffled().take(6)
+        return(1..45).shuffled().take(6).sorted()
     }
 }
