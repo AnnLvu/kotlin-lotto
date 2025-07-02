@@ -31,3 +31,8 @@ InputView
 - [x] Input amount from user
 - [x] Input winning numbers
 - [x] Input bonus number
+
+OutputView
+- [x] Display Tickets
+- [ ] Display winning Statistics
+- [ ] Display Return Rate
