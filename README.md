@@ -36,3 +36,6 @@ OutputView
 - [x] Display Tickets
 - [ ] Display winning Statistics
 - [ ] Display Return Rate
+
+Logic
+- [x] Calculate Winning Stats

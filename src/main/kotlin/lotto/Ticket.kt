@@ -6,4 +6,5 @@ class Ticket(val numbers:List<Int>) {
         require(numbers.all{it in 1..45 }) {"Numbers should be between 1 to 45"}
     }
 
+    fun getNumbers():List<Int> = numbers
 }
