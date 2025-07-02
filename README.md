@@ -5,14 +5,17 @@ Lotto
 
 Ticket
 - [x] Ticket has 6 numbers
-- [x] Ticket has unique numbers
+- [x] ticket numbers are between 1 and 45
+- [x] ticket numbers are not between 1 and 45
+- [x] ticket numbers are not duplicate
+- [x] ticket numbers should not be empty
 
 Winning Numbers
 - [x] winning numbers are in the range 1..45
 - [x] winning numbers not in range 1..45
 - [x] winning numbers are unique 
-- [ ] bonus number is in the range 1..45
-- [ ] bonus number is not in the range 1..45
-- [ ] bonus number in the list of winning numbers
-- [ ] bonus number not in the list of winning numbers
+- [x] bonus number is in the range 1..45
+- [x] bonus number is not in the range 1..45
+- [x] bonus number in the list of winning numbers
+- [x] bonus number not in the list of winning numbers
 

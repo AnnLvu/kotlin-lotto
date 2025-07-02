@@ -6,14 +6,14 @@ import kotlin.test.Test
 
 class TicketTest {
     @Test
-    fun `ticket numbers are between 1 to 45`(){
+    fun `ticket numbers are between 1 and 45`(){
         assertDoesNotThrow {
             val ticket = Ticket(listOf(1,2,34,6,45,41))
         }
     }
 
     @Test
-    fun `ticket numbers are not between 1 to 45`(){
+    fun `ticket numbers are not between 1 and 45`(){
         assertThrows<IllegalArgumentException> {
             val ticket = Ticket(listOf(1,2,34,46,4,41))
         }
