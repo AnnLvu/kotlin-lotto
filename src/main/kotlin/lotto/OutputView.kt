@@ -1,13 +1,10 @@
 package lotto
 
 object OutputView {
-    fun displayTickets(
-        ticketCount: Int,
-        ticketsList: List<Ticket>,
-    ) {
-        println("You have purchased $ticketCount tickets.")
-        ticketsList.forEach { ticket ->
-            println(ticket.numbers.getNumbers().joinToString(prefix = "[", postfix = "]", separator = ","))
+    fun displayTickets(tickets: Tickets) {
+        println("You have purchased ${tickets.getTickets().size} tickets.")
+        tickets.getTickets().forEach {
+            println(it.numbers.getNumbers().joinToString(prefix = "[", postfix = "]", separator = ","))
         }
     }
 
