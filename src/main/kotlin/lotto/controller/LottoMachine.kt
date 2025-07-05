@@ -1,6 +1,9 @@
 package lotto.controller
-import lotto.model.*
-import lotto.view.*
+
+import lotto.model.Tickets
+import lotto.model.WinningTicket
+import lotto.view.InputView
+import lotto.view.OutputView
 
 object LottoMachine {
     fun start() {

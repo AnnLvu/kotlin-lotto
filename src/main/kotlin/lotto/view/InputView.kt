@@ -1,5 +1,7 @@
 package lotto.view
-import lotto.model.*
+
+import lotto.model.Const
+import lotto.model.Numbers
 
 object InputView {
     fun inputPurchaseAmount(): Int {

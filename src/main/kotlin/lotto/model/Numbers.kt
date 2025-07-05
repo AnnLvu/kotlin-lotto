@@ -8,6 +8,8 @@ class Numbers(private val numbers: List<Int>) {
     }
 
     fun getNumbers(): List<Int> = numbers
+
     fun contains(number: Int): Boolean = numbers.contains(number)
+
     fun countMatches(other: Numbers): Int = numbers.count { other.contains(it) }
 }
