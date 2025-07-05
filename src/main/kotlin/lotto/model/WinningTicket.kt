@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 class WinningTicket(val winningNumbers: Numbers, val bonusNumber: Int = 1) {
     init {

@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 object Const {
     const val PRICE = 1000

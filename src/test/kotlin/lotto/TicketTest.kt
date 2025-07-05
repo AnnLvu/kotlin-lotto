@@ -1,5 +1,8 @@
 package lotto
 
+import lotto.controller.*
+import lotto.model.*
+import lotto.view.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

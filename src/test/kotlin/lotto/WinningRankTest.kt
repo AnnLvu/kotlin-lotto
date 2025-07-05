@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.model.Rank
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

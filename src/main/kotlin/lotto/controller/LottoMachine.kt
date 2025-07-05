@@ -1,4 +1,6 @@
-package lotto
+package lotto.controller
+import lotto.model.*
+import lotto.view.*
 
 object LottoMachine {
     fun start() {

@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 class Tickets(private val ticketList: List<Ticket>) {
 
