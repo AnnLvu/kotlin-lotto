@@ -6,16 +6,15 @@ object LottoMachine {
         val ticketList = generateTickets(amount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
-        calculateStats(ticketList, winningNumbers, bonusNumber)
+        val winningTicket = WinningTicket(winningNumbers, bonusNumber)
+        calculateStats(ticketList, winningTicket)
         OutputView.displayResults(winStats, calculateReturnRate(amount))
     }
 
     fun generateTickets(amount: Int): List<Ticket> {
         val ticketCount = amount / Const.PRICE
-        val ticketsList = mutableListOf<Ticket>()
-        repeat(ticketCount) {
-            val ticket = Ticket(generateTicketNumbers())
-            ticketsList.add(ticket)
+        val ticketsList = List(ticketCount) {
+            Ticket(Numbers(generateTicketNumbers()))
         }
         OutputView.displayTickets(ticketCount, ticketsList)
         return ticketsList
@@ -25,24 +24,21 @@ object LottoMachine {
         return (Const.MIN..Const.MAX).shuffled().take(Const.NUMBER_COUNT).sorted()
     }
 
-    private val winStats =
-        mutableMapOf(
-            Rank.FIRST to 0,
-            Rank.SECOND to 0,
-            Rank.THIRD to 0,
-            Rank.FOURTH to 0,
-            Rank.FIFTH to 0,
-            Rank.MISS to 0,
-        )
+    private val winStats = mutableMapOf(
+        Rank.FIRST to 0,
+        Rank.SECOND to 0,
+        Rank.THIRD to 0,
+        Rank.FOURTH to 0,
+        Rank.FIFTH to 0,
+        Rank.MISS to 0,
+    )
 
     private fun calculateStats(
-        tickets: List<Ticket>,
-        winningNumbers: List<Int>,
-        bonusNumber: Int,
+        tickets: List<Ticket>, winningTicket: WinningTicket
     ) {
         for (ticket in tickets) {
-            val match = checkMatch(ticket, winningNumbers)
-            if (match == 5 && ticket.numbers.contains(bonusNumber)) {
+            val match = ticket.numbers.countMatches(winningTicket.winningNumbers)
+            if (match == 5 && ticket.numbers.contains(winningTicket.bonusNumber)) {
                 winStats[Rank.SECOND] = winStats[Rank.SECOND]!! + 1
             } else {
                 winStats[
@@ -52,13 +48,6 @@ object LottoMachine {
                 ] = winStats[Rank.valueOf(match, false)]!! + 1
             }
         }
-    }
-
-    private fun checkMatch(
-        ticket: Ticket,
-        winningNumbers: List<Int>,
-    ): Int {
-        return (ticket.numbers.count { winningNumbers.contains(it) })
     }
 
     private fun calculateReturnRate(amount: Int): String {

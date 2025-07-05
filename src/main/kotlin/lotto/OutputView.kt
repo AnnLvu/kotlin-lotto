@@ -7,7 +7,7 @@ object OutputView {
     ) {
         println("You have purchased $ticketCount tickets.")
         ticketsList.forEach { ticket ->
-            println(ticket.numbers.joinToString(prefix = "[", postfix = "]", separator = ","))
+            println(ticket.numbers.getNumbers().joinToString(prefix = "[", postfix = "]", separator = ","))
         }
     }
 
