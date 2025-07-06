@@ -1,0 +1,52 @@
+package lotto.view
+
+import lotto.model.Const
+import lotto.model.Numbers
+
+object InputView {
+    fun inputPurchaseAmount(): Int {
+        while (true) {
+            try {
+                println("Please enter the purchase amount.")
+                val amount = readln().trim().toInt()
+                require(amount >= Const.PRICE && amount % Const.PRICE == 0) { Const.AMOUNT_ERROR }
+                return amount
+            } catch (_: NumberFormatException) {
+                println("Amount must be a number")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid amount")
+            }
+        }
+    }
+
+    fun inputWinningNumbers(): Numbers {
+        println("\nPlease enter last week’s winning numbers.")
+        while (true) {
+            try {
+                val input = readln().trim()
+                val numbers = input.split(",").map { it.trim().toInt() }
+                return Numbers(numbers)
+            } catch (_: NumberFormatException) {
+                println("Winning number should  be a numeric")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid winning number")
+            }
+        }
+    }
+
+    fun inputBonusNumber(numberList: Numbers): Int {
+        while (true) {
+            try {
+                println("Please enter the bonus number.")
+                val bonusNumber = readln().trim().toInt()
+                require(bonusNumber in Const.MIN..Const.MAX) { Const.NUM_RANGE }
+                require(!numberList.contains(bonusNumber)) { Const.DISTINCT_NUM }
+                return bonusNumber
+            } catch (_: NumberFormatException) {
+                println("bonus Number must be a numeric")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid bonus number")
+            }
+        }
+    }
+}
