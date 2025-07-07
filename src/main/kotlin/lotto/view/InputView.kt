@@ -26,7 +26,7 @@ object InputView {
                 val input = readln()
                 return InputManualParser.parseManualTicketCount(input, maxTickets)
             } catch (_: NumberFormatException) {
-                println("Numbers for manual tickets must be a number")
+                println("Manual tickets must be a number")
             } catch (_: IllegalArgumentException) {
                 println("Enter a valid number")
             }
@@ -72,7 +72,7 @@ object InputView {
             try {
                 println("Please enter the bonus number.")
                 val bonusNumber = readln().trim().toInt()
-                require(bonusNumber in Const.MIN..Const.MAX) { Const.NUM_RANGE }
+                require(bonusNumber in Const.MIN_RANGE..Const.MAX_RANGE) { Const.NUM_RANGE }
                 require(!numberList.contains(bonusNumber)) { Const.DISTINCT_NUM }
                 return bonusNumber
             } catch (_: NumberFormatException) {

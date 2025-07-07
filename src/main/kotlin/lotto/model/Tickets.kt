@@ -14,7 +14,7 @@ class Tickets(private val ticketList: List<Ticket>) {
         }
 
         private fun generateTicketNumbers(): List<Int> {
-            return (Const.MIN..Const.MAX).shuffled().take(Const.NUMBER_COUNT).sorted()
+            return (Const.MIN_RANGE..Const.MAX_RANGE).shuffled().take(Const.NUMBER_COUNT).sorted()
         }
     }
 
