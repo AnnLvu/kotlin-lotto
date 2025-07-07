@@ -52,7 +52,7 @@ Ticket
 - [x] Each number must be between 1 and 45
 
 Logic
-- [ ] Automatically generate the remaining tickets to reach the total number.
+- [x] Automatically generate the remaining tickets to reach the total number.
 
 OutputView
 - [ ] All tickets (manual + automatic) must be correctly displayed in the output

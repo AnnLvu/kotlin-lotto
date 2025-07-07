@@ -3,6 +3,9 @@ package lotto
 import lotto.model.Const
 import lotto.model.Numbers
 import lotto.model.Ticket
+import lotto.model.Tickets
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -62,5 +65,20 @@ class TicketTest {
             val ticket = Ticket(Numbers(emptyList()))
             require(ticket.numbers.getNumbers().size >= 0)
         }
+    }
+
+    @Test
+    fun `generate should create correct number of manual and automatic tickets`() {
+        val amount = 5000
+        val manualTickets = listOf(
+            Numbers(listOf(1, 2, 3, 4, 5, 6)),
+            Numbers(listOf(7, 8, 9, 10, 11, 12))
+        )
+        val tickets = Tickets.generate(amount, manualTickets)
+        val ticketList = tickets.getTickets()
+        assertEquals(5, ticketList.size)
+        assertEquals(manualTickets[0].getNumbers(), ticketList[0].numbers.getNumbers())
+        assertEquals(manualTickets[1].getNumbers(), ticketList[1].numbers.getNumbers())
+        assertTrue(ticketList.subList(2, 5).all { it.numbers.getNumbers().size == Const.NUMBER_COUNT })
     }
 }

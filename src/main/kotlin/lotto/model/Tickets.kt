@@ -2,12 +2,15 @@ package lotto.model
 
 class Tickets(private val ticketList: List<Ticket>) {
     companion object {
-        fun generate(amount: Int): Tickets {
-            val ticketCount = amount / Const.PRICE
-            val list = List(ticketCount) {
+        fun generate(amount: Int, manualTickets: List<Numbers> = emptyList()): Tickets {
+            val totalTicketCount = amount / Const.PRICE
+            val manualTicketCount = manualTickets.size
+            val autoTicketCount = totalTicketCount - manualTicketCount
+            val manualTicketList = manualTickets.map { Ticket(it) }
+            val autoTicketList = List(autoTicketCount) {
                 Ticket(Numbers(generateTicketNumbers()))
             }
-            return Tickets(list)
+            return Tickets(manualTicketList + autoTicketList)
         }
 
         private fun generateTicketNumbers(): List<Int> {
