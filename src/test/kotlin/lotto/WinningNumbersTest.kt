@@ -12,7 +12,7 @@ class WinningNumbersTest {
     fun `winning numbers in range 1 to 45`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(Numbers(listOf(10, 2, 3, 4, 5, 6)))
-            require(ticket.winningNumbers.getNumbers().all { it in Const.MIN..Const.MAX })
+            require(ticket.winningNumbers.getNumbers().all { it in Const.MIN_RANGE..Const.MAX_RANGE })
         }
     }
 
@@ -20,7 +20,7 @@ class WinningNumbersTest {
     fun `winning numbers not in range 1 to 45`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(Numbers(listOf(10, 2, 3, 54, 5, 6)))
-            require(ticket.winningNumbers.getNumbers().all { it in Const.MIN..Const.MAX })
+            require(ticket.winningNumbers.getNumbers().all { it in Const.MIN_RANGE..Const.MAX_RANGE })
         }
     }
 
@@ -60,7 +60,7 @@ class WinningNumbersTest {
     fun `bonus number is in the range 1 to 45`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(Numbers(listOf(1, 2, 34, 45, 5, 13)), 11)
-            require(ticket.bonusNumber in Const.MIN..Const.MAX)
+            require(ticket.bonusNumber in Const.MIN_RANGE..Const.MAX_RANGE)
         }
     }
 
@@ -68,7 +68,7 @@ class WinningNumbersTest {
     fun `bonus number is not in the range 1 to 45`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(Numbers(listOf(10, 2, 34, 45, 5, 13)), 100)
-            require(ticket.bonusNumber in Const.MIN..Const.MAX)
+            require(ticket.bonusNumber in Const.MIN_RANGE..Const.MAX_RANGE)
         }
     }
 

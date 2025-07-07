@@ -7,7 +7,6 @@ import lotto.view.InputView
 import lotto.view.OutputView
 
 object LottoMachine {
-
     fun start() {
         val (tickets, manualTicketCount, amount) = purchaseTickets()
         OutputView.displayTickets(tickets, manualTicketCount)

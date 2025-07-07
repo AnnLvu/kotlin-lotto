@@ -2,14 +2,18 @@ package lotto.model
 
 class Tickets(private val ticketList: List<Ticket>) {
     companion object {
-        fun generate(amount: Int, manualTickets: List<Numbers> = emptyList()): Tickets {
+        fun generate(
+            amount: Int,
+            manualTickets: List<Numbers> = emptyList(),
+        ): Tickets {
             val totalTicketCount = amount / Const.PRICE
             val manualTicketCount = manualTickets.size
             val autoTicketCount = totalTicketCount - manualTicketCount
             val manualTicketList = manualTickets.map { Ticket(it) }
-            val autoTicketList = List(autoTicketCount) {
-                Ticket(Numbers(generateTicketNumbers()))
-            }
+            val autoTicketList =
+                List(autoTicketCount) {
+                    Ticket(Numbers(generateTicketNumbers()))
+                }
             return Tickets(manualTicketList + autoTicketList)
         }
 
@@ -19,14 +23,15 @@ class Tickets(private val ticketList: List<Ticket>) {
     }
 
     fun calculateStats(winningTicket: WinningTicket): Map<Rank, Int> {
-        val winStats = mutableMapOf(
-            Rank.FIRST to 0,
-            Rank.SECOND to 0,
-            Rank.THIRD to 0,
-            Rank.FOURTH to 0,
-            Rank.FIFTH to 0,
-            Rank.MISS to 0,
-        )
+        val winStats =
+            mutableMapOf(
+                Rank.FIRST to 0,
+                Rank.SECOND to 0,
+                Rank.THIRD to 0,
+                Rank.FOURTH to 0,
+                Rank.FIFTH to 0,
+                Rank.MISS to 0,
+            )
 
         for (ticket in ticketList) {
             val rank = determineRank(ticket, winningTicket)
@@ -35,7 +40,10 @@ class Tickets(private val ticketList: List<Ticket>) {
         return winStats
     }
 
-    private fun determineRank(ticket: Ticket, winningTicket: WinningTicket): Rank {
+    private fun determineRank(
+        ticket: Ticket,
+        winningTicket: WinningTicket,
+    ): Rank {
         val matchCount = ticket.numbers.countMatches(winningTicket.winningNumbers)
         return if (matchCount == 5 && ticket.numbers.contains(winningTicket.bonusNumber)) {
             Rank.SECOND

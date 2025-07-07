@@ -59,7 +59,6 @@ class InputManualParserTest {
     fun `size ticket numbers is not 6`() {
         assertThrows<IllegalArgumentException> {
             InputManualParser.parseManualTicketNumbers("8, 21, 80, 41, 42")
-
         }
     }
 }
