@@ -5,8 +5,7 @@ import lotto.model.Numbers
 object InputManualParser {
     fun parseManualTicketCount(input: String, maxTickets: Int): Int {
         val count = input.trim().toIntOrNull() ?: throw IllegalArgumentException("Manual ticket count must be numeric.")
-        require(count in 0..maxTickets) {"Manual ticket count must be between 0 and $maxTickets"}
-        require(count in 1..45) { "The count must be between 1 and 45." }
+        require(count in 0..maxTickets) { "Manual ticket count must be between 0 and $maxTickets" }
         return count
     }
 

@@ -42,6 +42,13 @@ class InputManualParserTest {
     }
 
     @Test
+    fun `parseManualTicketNumbers throws duplicates`() {
+        assertThrows<IllegalArgumentException> {
+            InputManualParser.parseManualTicketNumbers("1, 2, 3, 3, 4, 5")
+        }
+    }
+
+    @Test
     fun `parseManualTicketNumbers must be between 1 and 45`() {
         assertThrows<IllegalArgumentException> {
             InputManualParser.parseManualTicketNumbers("8, 21, 80, 41, 42, 43")
@@ -49,12 +56,10 @@ class InputManualParserTest {
     }
 
     @Test
-    fun `parseManualTicketNumbers throws on wrong size or duplicates`() {
+    fun `size ticket numbers is not 6`() {
         assertThrows<IllegalArgumentException> {
-            InputManualParser.parseManualTicketNumbers("1, 2, 3, 3, 4, 5")
-        }
-        assertThrows<IllegalArgumentException> {
-            InputManualParser.parseManualTicketNumbers("1, 2, 3, 4, 5")
+            InputManualParser.parseManualTicketNumbers("8, 21, 80, 41, 42")
+
         }
     }
 }
