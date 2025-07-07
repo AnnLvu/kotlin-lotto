@@ -55,4 +55,4 @@ Logic
 - [x] Automatically generate the remaining tickets to reach the total number.
 
 OutputView
-- [ ] All tickets (manual + automatic) must be correctly displayed in the output
+- [x] All tickets (manual + automatic) must be correctly displayed in the output

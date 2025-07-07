@@ -13,7 +13,7 @@ object LottoMachine {
         val manualTicketCount = InputView.inputManualTicketCount(maxTickets)
         val manualTickets = InputView.inputManualTickets(manualTicketCount)
         val tickets = Tickets.generate(amount, manualTickets)
-        OutputView.displayTickets(tickets)
+        OutputView.displayTickets(tickets, manualTicketCount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
         val winningTicket = WinningTicket(winningNumbers, bonusNumber)

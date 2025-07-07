@@ -4,8 +4,10 @@ import lotto.model.Rank
 import lotto.model.Tickets
 
 object OutputView {
-    fun displayTickets(tickets: Tickets) {
-        println("You have purchased ${tickets.getTickets().size} tickets.")
+    fun displayTickets(tickets: Tickets, manualTicketCount: Int) {
+        val totalTickets = tickets.getTickets().size
+        val autoTicketCount = totalTickets - manualTicketCount
+        println("\nPurchased $manualTicketCount manual and $autoTicketCount automatic tickets.")
         tickets.getTickets().forEach {
             println(it.numbers.getNumbers().joinToString(prefix = "[", postfix = "]", separator = ","))
         }
@@ -15,8 +17,7 @@ object OutputView {
         winStats: Map<Rank, Int>,
         returnRate: String,
     ) {
-        val text =
-            """
+        val text = """
             
             Winning Statistics
             ------------------
