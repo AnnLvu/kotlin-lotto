@@ -4,10 +4,9 @@ class Tickets(private val ticketList: List<Ticket>) {
     companion object {
         fun generate(amount: Int): Tickets {
             val ticketCount = amount / Const.PRICE
-            val list =
-                List(ticketCount) {
-                    Ticket(Numbers(generateTicketNumbers()))
-                }
+            val list = List(ticketCount) {
+                Ticket(Numbers(generateTicketNumbers()))
+            }
             return Tickets(list)
         }
 
@@ -17,27 +16,29 @@ class Tickets(private val ticketList: List<Ticket>) {
     }
 
     fun calculateStats(winningTicket: WinningTicket): Map<Rank, Int> {
-        val winStats =
-            mutableMapOf(
-                Rank.FIRST to 0,
-                Rank.SECOND to 0,
-                Rank.THIRD to 0,
-                Rank.FOURTH to 0,
-                Rank.FIFTH to 0,
-                Rank.MISS to 0,
-            )
+        val winStats = mutableMapOf(
+            Rank.FIRST to 0,
+            Rank.SECOND to 0,
+            Rank.THIRD to 0,
+            Rank.FOURTH to 0,
+            Rank.FIFTH to 0,
+            Rank.MISS to 0,
+        )
 
         for (ticket in ticketList) {
-            val match = ticket.numbers.countMatches(winningTicket.winningNumbers)
-            val rank =
-                if (match == 5 && ticket.numbers.contains(winningTicket.bonusNumber)) {
-                    Rank.SECOND
-                } else {
-                    Rank.valueOf(match, false)
-                }
+            val rank = determineRank(ticket, winningTicket)
             winStats[rank] = winStats[rank]!! + 1
         }
         return winStats
+    }
+
+    private fun determineRank(ticket: Ticket, winningTicket: WinningTicket): Rank {
+        val matchCount = ticket.numbers.countMatches(winningTicket.winningNumbers)
+        return if (matchCount == 5 && ticket.numbers.contains(winningTicket.bonusNumber)) {
+            Rank.SECOND
+        } else {
+            Rank.valueOf(matchCount, false)
+        }
     }
 
     fun calculateReturnRate(
