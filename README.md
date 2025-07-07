@@ -1,4 +1,7 @@
 # kotlin-lotto
+
+## Step1
+
 Lotto
 - [x] Amount is greater than 1000
 - [x] Amount is divisible by 1000
@@ -40,3 +43,16 @@ OutputView
 Logic
 - [x] Calculate Winning Stats
 - [x] Calculate Return Rate
+
+## Step2
+Ticket
+- [ ] The number of manual tickets must not exceed the number of tickets purchasable based on the total amount. 
+- [ ] Ticket has 6 numbers
+- [ ] All numbers must be unique
+- [ ] Each number must be between 1 and 45
+
+Logic
+- [ ] Automatically generate the remaining tickets to reach the total number.
+
+OutputView
+- [ ] All tickets (manual + automatic) must be correctly displayed in the output
