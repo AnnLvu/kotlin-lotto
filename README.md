@@ -46,10 +46,10 @@ Logic
 
 ## Step2
 Ticket
-- [ ] The number of manual tickets must not exceed the number of tickets purchasable based on the total amount. 
-- [ ] Ticket has 6 numbers
-- [ ] All numbers must be unique
-- [ ] Each number must be between 1 and 45
+- [x] The number of manual tickets must not exceed the number of tickets purchasable based on the total amount. 
+- [x] Ticket has 6 numbers
+- [x] All numbers must be unique
+- [x] Each number must be between 1 and 45
 
 Logic
 - [ ] Automatically generate the remaining tickets to reach the total number.

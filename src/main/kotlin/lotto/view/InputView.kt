@@ -19,6 +19,39 @@ object InputView {
         }
     }
 
+    fun inputManualTicketCount(maxTickets: Int): Int {
+        while (true) {
+            try {
+                println("\nEnter the number of manual tickets to purchase.")
+                val input = readln()
+                return InputManualParser.parseManualTicketCount(input, maxTickets)
+            } catch (_: NumberFormatException) {
+                println("Numbers for manual tickets must be a number")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid number")
+            }
+        }
+    }
+
+    fun inputManualTickets(count: Int): List<Numbers> {
+        println("\nEnter the numbers for manual tickets.")
+        val tickets = mutableListOf<Numbers>()
+        repeat(count) {
+            while (true) {
+                try {
+                    val input = readln()
+                    tickets.add(InputManualParser.parseManualTicketNumbers(input))
+                    break
+                } catch (_: NumberFormatException) {
+                    println("Manual number should  be a numeric")
+                } catch (_: IllegalArgumentException) {
+                    println("Enter a valid tickets")
+                }
+            }
+        }
+        return tickets
+    }
+
     fun inputWinningNumbers(): Numbers {
         println("\nPlease enter last week’s winning numbers.")
         while (true) {
