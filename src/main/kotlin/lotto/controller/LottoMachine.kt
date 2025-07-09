@@ -8,21 +8,21 @@ import lotto.view.OutputView
 
 object LottoMachine {
     fun start() {
-        val (tickets, manualTicketCount, amount) = purchaseTickets()
-        OutputView.displayTickets(tickets, manualTicketCount)
+        val purchaseResult = purchaseTickets()
+        OutputView.displayTickets(purchaseResult.tickets, purchaseResult.manualTicketCount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
         val winningTicket = WinningTicket(winningNumbers, bonusNumber)
-        val winStats = tickets.calculateStats(winningTicket)
-        OutputView.displayResults(winStats, tickets.calculateReturnRate(amount, winStats))
+        val winStats = purchaseResult.tickets.calculateStats(winningTicket)
+        OutputView.displayResults(winStats, purchaseResult.tickets.calculateReturnRate(purchaseResult.amount, winStats))
     }
 
-    private fun purchaseTickets(): Triple<Tickets, Int, Int> {
+    private fun purchaseTickets(): PurchaseResult {
         val amount = InputView.inputPurchaseAmount()
         val maxTickets = amount / Const.PRICE
         val manualTicketCount = InputView.inputManualTicketCount(maxTickets)
         val manualTickets = InputView.inputManualTickets(manualTicketCount)
         val tickets = Tickets.generate(amount, manualTickets)
-        return Triple(tickets, manualTicketCount, amount)
+        return PurchaseResult(tickets, manualTicketCount, amount)
     }
 }
