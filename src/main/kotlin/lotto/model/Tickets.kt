@@ -6,19 +6,8 @@ class Tickets(private val ticketList: List<Ticket>) {
             amount: Int,
             manualTicketsNumbers: List<Numbers> = emptyList(),
         ): Tickets {
-            val totalTicketCount = amount / Const.PRICE
-            val manualTicketCount = manualTicketsNumbers.size
-            val autoTicketCount = totalTicketCount - manualTicketCount
-            val manualTicketList = manualTicketsNumbers.map { Ticket(it) }
-            val autoTicketList =
-                List(autoTicketCount) {
-                    Ticket(Numbers(generateTicketNumbers()))
-                }
-            return Tickets(manualTicketList + autoTicketList)
-        }
-
-        private fun generateTicketNumbers(): List<Int> {
-            return (Const.MIN_RANGE..Const.MAX_RANGE).shuffled().take(Const.NUMBER_COUNT).sorted()
+            val generator = TicketGenerator(amount, manualTicketsNumbers)
+            return Tickets(generator.generateTickets())
         }
     }
 
@@ -45,11 +34,19 @@ class Tickets(private val ticketList: List<Ticket>) {
         winningTicket: WinningTicket,
     ): Rank {
         val matchCount = ticket.numbers.countMatches(winningTicket.winningNumbers)
-        return if (matchCount == 5 && ticket.numbers.contains(winningTicket.bonusNumber)) {
+        return if (isSecondRank(matchCount, ticket, winningTicket)) {
             Rank.SECOND
         } else {
             Rank.valueOf(matchCount, false)
         }
+    }
+
+    private fun isSecondRank(
+        matchCount: Int,
+        ticket: Ticket,
+        winningTicket: WinningTicket,
+    ): Boolean {
+        return matchCount == 5 && ticket.numbers.contains(winningTicket.bonusNumber)
     }
 
     fun calculateReturnRate(
