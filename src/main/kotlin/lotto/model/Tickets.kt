@@ -4,12 +4,12 @@ class Tickets(private val ticketList: List<Ticket>) {
     companion object {
         fun generate(
             amount: Int,
-            manualTickets: List<Numbers> = emptyList(),
+            manualTicketsNumbers: List<Numbers> = emptyList(),
         ): Tickets {
             val totalTicketCount = amount / Const.PRICE
-            val manualTicketCount = manualTickets.size
+            val manualTicketCount = manualTicketsNumbers.size
             val autoTicketCount = totalTicketCount - manualTicketCount
-            val manualTicketList = manualTickets.map { Ticket(it) }
+            val manualTicketList = manualTicketsNumbers.map { Ticket(it) }
             val autoTicketList =
                 List(autoTicketCount) {
                     Ticket(Numbers(generateTicketNumbers()))
